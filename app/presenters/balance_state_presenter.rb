@@ -1,4 +1,4 @@
-class BalanceStateFacade
+class BalanceStatePresenter
   def initialize(params)
     @sum_start = params[:sum_start]
     @sum_finish = params[:sum_finish]

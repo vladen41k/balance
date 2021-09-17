@@ -1,4 +1,4 @@
-class TransactionFacade
+class TransactionPresenter
   def initialize(params)
     @transaction = params.attributes
     @transaction['amount'] = Money.from_cents(@transaction['amount'],

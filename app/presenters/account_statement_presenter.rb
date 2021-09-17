@@ -1,10 +1,10 @@
-class AccountStatementFacade
+class AccountStatementPresenter
   PAYMENT = 'payment'.freeze
   WITHDRAWAL = 'withdrawal'.freeze
 
   def initialize(params)
     @transactions = params[:transactions]
-    @sum = params[:sum]
+    @sum = Money.from_cents(params[:sum], Transaction::CURRENCY_RUB).format
   end
 
   def call

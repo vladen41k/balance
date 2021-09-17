@@ -5,7 +5,12 @@ class Transaction < ApplicationRecord
 
   belongs_to :user
 
-  scope :transactions_sum_for_period, lambda { |user_id, date|
-    where(user_id: user_id).where('created_at <= ?', date).sum(:amount)
+  scope :transactions_for_period, lambda { |user_id, date|
+    where(user_id: user_id).where('created_at <= ?', date)
   }
+
+  def self.transactions_sum_for_period(user_id, date)
+    transactions_for_period(user_id, date).sum(:amount)
+  end
+
 end

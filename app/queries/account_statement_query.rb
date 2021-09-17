@@ -23,9 +23,8 @@ class AccountStatementQuery
   end
 
   def find(params)
-    transactions = Transaction.where(user_id: params[:user_id])
-                              .where('created_at BETWEEN :start AND :finish',
-                                     start: params[:start], finish: params[:finish])
+    transactions = Transaction.where(user_id: params[:user_id],
+                                     created_at: params[:start]..params[:finish] )
     sum = Transaction.transactions_sum_for_period(params[:user_id], params[:finish])
 
     Success({ transactions: transactions, sum: sum })

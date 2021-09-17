@@ -5,7 +5,7 @@ module Api
         query = AccountStatementQuery.new.call(permit_params)
 
         if query.success?
-          render json: AccountStatementFacade.new(query.success).call, status: :ok
+          render json: AccountStatementPresenter.new(query.success).call, status: :ok
         else
           render json: { errors: query.failure.to_h }, status: :bad_request
         end
@@ -15,7 +15,7 @@ module Api
         query = BalanceStateQuery.new.call(permit_params)
 
         if query.success?
-          render json: BalanceStateFacade.new(query.success).call, status: :ok
+          render json: BalanceStatePresenter.new(query.success).call, status: :ok
         else
           render json: { errors: query.failure.to_h }, status: :bad_request
         end
@@ -25,7 +25,7 @@ module Api
         transaction = Transaction.new(permit_params)
 
         if transaction.save
-          render json: TransactionFacade.new(transaction).call, status: :created
+          render json: TransactionPresenter.new(transaction).call, status: :created
         else
           render json: { errors: transaction.errors.messages }, status: :bad_request
         end
